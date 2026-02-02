@@ -43,12 +43,10 @@ public class MainActivity extends AppCompatActivity {
         cityAdapter = new ArrayAdapter<>(this, R.layout.content, dataList);
         cityList.setAdapter(cityAdapter);
 
-        // Track selection
+        // keep track of selection
         cityList.setOnItemClickListener((parent, view, position, id) -> {
             selectedCityIndex = position;
         });
-
-        // Add Button Logic
         addButton.setOnClickListener(v -> {
             EditText input = new EditText(this);
             input.setHint("Enter city name");
@@ -67,13 +65,12 @@ public class MainActivity extends AppCompatActivity {
 //                    .setNegativeButton("Cancel", null)
                     .show();
         });
-
-        // Delete Button Logic
         deleteButton.setOnClickListener(v -> {
             if (selectedCityIndex != -1) {
                 dataList.remove(selectedCityIndex);
                 cityAdapter.notifyDataSetChanged();
-                selectedCityIndex = -1; // Reset selection
+                //change index back so reused
+                selectedCityIndex = -1;
             }
         });
     }
